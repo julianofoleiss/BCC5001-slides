@@ -1,0 +1,385 @@
+---
+title: Método Mestre para Resolver Recorrências
+author: "Prof. Juliano Foleis"
+format:
+  revealjs:
+    theme: default
+    css: style.css
+    self-contained: true
+    self-contained-math: true
+    #pdf-separate-fragments: true
+    code-line-numbers: true
+---
+
+## Método Mestre
+
+O método mestre serve para resolver recorrências da forma
+
+$$
+T(n) = aT\left(\frac{n}{b}\right) + f(n)
+$$
+
+tal que $a \geq 1$, $b > 1$, $a$ e $b$ constantes, e $f(n)$ é assintoticamente positiva.
+
+## Teorema Mestre {.smaller}
+
+Sejam $a \geq 1$ e $b>1$ constantes, $f(n)$ uma função assintoticamente possitiva e $T(n)$ definida para inteiros não-negativos a recorrência
+
+$$
+T(n) = aT\left(\frac{n}{b}\right) + f(n)
+$$
+
+é limitada assintoticamente por:
+
+1. Se $f(n) = O(n^{\log_b(a) - \epsilon})$ para $\epsilon > 0$ constante, então $T(n) = \Theta(n^{\log_b(a)})$;
+2. Se $f(n) = \Theta(n^{\log_b(a)})$, então $T(n) = \Theta(n^{\log_b(a)} \cdot \lg(n))$; ou
+3. Se $f(n) = \Omega(n^{\log_b(a) + \epsilon})$ para $\epsilon > 0$ constante **E** se $af\left( \frac{n}{b} \right) \leq cf(n)$ para $c<1$ constante e $n$ suficientemente grande,  então $T(n) = \Theta(f(n))$.
+
+<!-- Exemplo 1 -->
+## Exemplo 1 {.smaller}
+
+Resolva a recorrência $T(n) = 9T\left(\frac{n}{3}\right) + n$ usando o método mestre.
+
+**Solução:**
+
+**Passo 1:** Identificar $a$, $b$ e $f(n)$.
+
+$a = 9$
+
+$b = 3$
+
+$f(n) = n$
+
+. . .
+
+**Passo 2:** Calcular $n^{\log_b(a)}$.
+
+$n^{\log_b a} = n^{\log_3 9} = n^2$
+
+## Exemplo 1 {.smaller}
+
+**Passo 3:** Comparar $f(n)$ e $n^{\log_b(a)}$.
+
+$f(n) = ?(n^{\log_b(a)})$, substituindo
+
+$n = ?(n^2)$ (O, $\Omega$ ou $\Theta?$)
+
+. . .
+
+<br/>
+
+$n = O(n^2)$
+
+Parece que temos o Caso 1 do TM:
+
+::: {.callout-note icon="false" appearance="minimal"}
+1. Se $f(n) = O(n^{\log_b(a) - \epsilon})$ para $\epsilon > 0$ constante, então $T(n) = \Theta(n^{\log_b(a)})$
+:::
+
+. . .
+
+<br/>
+
+Como $n = O(n^{2 - \epsilon})$, p/ $\epsilon = 1$, podemos aplicar o caso $1$ do método mestre e concluir que $T(n) = \Theta(n^{\log_b(a)}) = \Theta(n^2)$.
+
+<!-- Exemplo 2 -->
+## Exemplo 2 {.smaller}
+
+Resolva a recorrência $T(n) = T\left(\frac{2n}{3}\right) + 1$ usando o método mestre.
+
+**Solução:**
+
+**Passo 1:** Identificar $a$, $b$ e $f(n)$.
+
+$a = 1$
+
+$b = \frac{3}{2}$
+
+$f(n) = 1$
+
+. . .
+
+**Passo 2:** Calcular $n^{\log_b(a)}$.
+
+$n^{\log_b a} = n^{\log_\frac{3}{2} 1} = n^0 = 1$
+
+## Exemplo 2 {.smaller}
+
+**Passo 3:** Comparar $f(n)$ e $n^{\log_b(a)}$.
+
+$f(n) = ?(n^{\log_b(a)})$, substituindo
+
+$1 = ?(1)$ (O, $\Omega$ ou $\Theta?$)
+
+. . .
+
+<br/>
+
+$1 = \Theta(1)$
+
+Parece que temos o Caso 2 do TM:
+
+::: {.callout-note icon="false" appearance="minimal"}
+2. Se $f(n) = \Theta(n^{\log_b(a)})$, então $T(n) = \Theta(n^{\log_b(a)} \cdot \lg(n))$
+:::
+
+. . .
+
+<br/>
+
+Como $1 = \Theta(1)$, podemos aplicar o caso $2$ do método mestre e concluir que $T(n) = \Theta(n^{\log_b(a)} \cdot \lg(n)) = \Theta(1 \cdot \lg(n)) = \Theta(\lg(n))$.
+
+<!-- Exemplo 3 -->
+## Exemplo 3 {.smaller}
+
+Resolva a recorrência $T(n) = 3T \left(\frac{n}{4} \right) + n \lg n$ usando o método mestre.
+
+**Solução:**
+
+**Passo 1:** Identificar $a$, $b$ e $f(n)$.
+
+$a = 3$
+
+$b = 4$
+
+$f(n) = n \lg n$
+
+. . .
+
+**Passo 2:** Calcular $n^{\log_b(a)}$.
+
+$n^{\log_b a} = n^{\log_4 3} \approx n^{0,793}$
+
+## Exemplo 3 {.smaller}
+
+**Passo 3:** Comparar $f(n)$ e $n^{\log_b(a)}$.
+
+$f(n) = ?(n^{\log_b(a)})$, substituindo
+
+$n \lg n = ?(n^{0,793})$ (O, $\Omega$ ou $\Theta?$)
+
+. . .
+
+<br/>
+
+$n \lg n = \Omega(n^{0,793})$
+
+Parece que temos o Caso 3 do TM:
+
+::: {.callout-note icon="false" appearance="minimal"}
+3. Se $f(n) = \Omega(n^{\log_b(a) + \epsilon})$ para $\epsilon > 0$ constante **E** se $af\left( \frac{n}{b} \right) \leq cf(n)$ para $c<1$ constante e $n$ suficientemente grande,  então $T(n) = \Theta(f(n))$.
+:::
+
+. . .
+
+Como $f(n) = \Omega (n^{\log_4 3 + \epsilon}), \epsilon \approx 0.2$, podemos aplicar o caso $3$ do método mestre se a condição a seguir for verdadeira: $a f \left(\frac{n}{b} \right) \leq cf(n)$.
+
+## Exemplo 3 {.smaller}
+
+$$
+\begin{align}
+a f \left(\frac{n}{b} \right) \leq & \, cf(n)\\
+3 \left( \frac{n}{4} \lg \frac{n}{4} \right) \leq & \, cn \lg n\\
+\frac{3}{4} n \lg n - \frac{3}{4} n \lg 4 \leq & \, cn \lg n\\
+\frac{3}{4} n \lg n - \frac{3}{4} 2n \leq & \, cn \lg n\\
+\frac{3}{4} n \lg n - \frac{3}{2} n \leq & \, cn \lg n\\
+n \lg n \left ( \frac{3}{4} - \frac{3}{2 \lg n} \right ) \leq & \, cn \lg n\\
+\frac{3}{4} - \frac{3}{2 \lg n} \leq & \, c
+\end{align}
+$$
+
+## Exemplo 3
+
+$$\frac{3}{4} - \frac{3}{2 \lg n} \leq c$$
+
+Portanto, $c \geq \frac{3}{4}$ para $n$ suficientemente grande. Assim, tomando $c = \frac{3}{4}$, $a f \left(\frac{n}{b} \right) \leq \, cf(n)$ p/ $c<1$. Assim, é possível aplicar o caso $3$ do método mestre, e podemos concluir que $T(n) = \Theta(f(n)) = \Theta(n \lg n)$.
+
+<!-- Exemplo 4 -->
+## Exemplo 4 {.smaller}
+
+Resolva a recorrência $T(n) = 2T \left(\frac{n}{2} \right) + n \lg n$ usando o método mestre.
+
+**Solução:**
+
+**Passo 1:** Identificar $a$, $b$ e $f(n)$.
+
+$a = 2$
+
+$b = 2$
+
+$f(n) = n \lg n$
+
+. . .
+
+**Passo 2:** Calcular $n^{\log_b(a)}$.
+
+$n^{\log_b a} = n^{\log_2 2} = n^1 = n$
+
+## Exemplo 4 {.smaller}
+
+**Passo 3:** Comparar $f(n)$ e $n^{\log_b(a)}$.
+
+$f(n) = ?(n^{\log_b(a)})$, substituindo
+
+$n \lg n = ?(n)$ (O, $\Omega$ ou $\Theta?$)
+
+. . .
+
+<br/>
+
+$n \lg n = \Omega(n)$
+
+Parece que temos o Caso 3 do TM:
+
+::: {.callout-note icon="false" appearance="minimal"}
+3. Se $f(n) = \Omega(n^{\log_b(a) + \epsilon})$ para $\epsilon > 0$ constante **E** se $af\left( \frac{n}{b} \right) \leq cf(n)$ para $c<1$ constante e $n$ suficientemente grande,  então $T(n) = \Theta(f(n))$.
+:::
+
+. . .
+
+$n \lg n$ é limitada inferiormente por $n$, mas não é polinomialmente maior. Isto é, a razão $f(n) / n^{\log_b a} = n \lg n / n = \lg n$, que é assintoticamente menor que $n^\epsilon$ para qualquer constante positiva $\epsilon$. Em outras palavras, não é possível mostrar que $n \lg n = \Omega(n^{1 + \epsilon})$ p/ $\epsilon > 0$.  Consequentemente a recorrência cai na lacuna dos casos $2$ e $3$ e não é resolvida pelo teorema mestre.
+
+<!-- Exemplo 5 -->
+## Exemplo 5 {.smaller}
+
+Resolva a recorrência $T(n) = 2T \left(\frac{n}{2} \right) + \Theta(n)$ usando o método mestre.
+
+**Solução:**
+
+**Passo 1:** Identificar $a$, $b$ e $f(n)$.
+
+$a = 2$
+
+$b = 2$
+
+$f(n) = n$
+
+. . .
+
+**Passo 2:** Calcular $n^{\log_b(a)}$.
+
+$n^{\log_b a} = n^{\log_2 2} = n^1 = n$
+
+## Exemplo 5 {.smaller}
+
+**Passo 3:** Comparar $f(n)$ e $n^{\log_b(a)}$.
+
+$f(n) = ?(n^{\log_b(a)})$, substituindo
+
+$n = ?(n)$ (O, $\Omega$ ou $\Theta?$)
+
+. . .
+
+<br/>
+
+$n = \Theta(n)$
+
+Parece que temos o Caso 2 do TM:
+
+::: {.callout-note icon="false" appearance="minimal"}
+2. Se $f(n) = \Theta(n^{\log_b(a)})$, então $T(n) = \Theta(n^{\log_b(a)} \cdot \lg(n))$
+:::
+
+. . .
+
+<br/>
+
+Como $n = \Theta(n)$, podemos aplicar o caso $2$ do método mestre e concluir que $T(n) = \Theta(n^{\log_b(a)} \cdot \lg(n)) = \Theta(n \cdot \lg(n)) = \Theta(n \lg(n))$.
+
+<!-- Exemplo 6 -->
+## Exemplo 6 {.smaller}
+
+Resolva a recorrência $T(n) = 8T \left(\frac{n}{2} \right) + \Theta(n^2)$ usando o método mestre.
+
+**Solução:**
+
+**Passo 1:** Identificar $a$, $b$ e $f(n)$.
+
+$a = 8$
+
+$b = 2$
+
+$f(n) = n^2$
+
+. . .
+
+**Passo 2:** Calcular $n^{\log_b(a)}$.
+
+$n^{\log_b a} = n^{\log_2 8} = n^3$
+
+## Exemplo 6 {.smaller}
+
+**Passo 3:** Comparar $f(n)$ e $n^{\log_b(a)}$.
+
+$f(n) = ?(n^{\log_b(a)})$, substituindo
+
+$n^2 = ?(n^3)$ (O, $\Omega$ ou $\Theta?$)
+
+. . .
+
+<br/>
+
+$n^2 = O(n^3)$
+
+Parece que temos o Caso 1 do TM:
+
+::: {.callout-note icon="false" appearance="minimal"}
+1. Se $f(n) = O(n^{\log_b(a) - \epsilon})$ para $\epsilon > 0$ constante, então $T(n) = \Theta(n^{\log_b(a)})$
+:::
+
+. . .
+
+<br/>
+
+Como $n^2 = O(n^{3 - \epsilon})$, p/ $\epsilon = 1$, podemos aplicar o caso $1$ do método mestre e concluir que $T(n) = \Theta(n^{\log_b(a)}) = \Theta(n^3)$.
+
+<!-- Exemplo 7 -->
+## Exemplo 7 {.smaller}
+
+Resolva a recorrência $T(n) = 7T \left(\frac{n}{2} \right) + \Theta(n^2)$ usando o método mestre.
+
+**Solução:**
+
+**Passo 1:** Identificar $a$, $b$ e $f(n)$.
+
+$a = 7$
+
+$b = 2$
+
+$f(n) = n^2$
+
+. . .
+
+**Passo 2:** Calcular $n^{\log_b(a)}$.
+
+$n^{\log_b a} = n^{\log_2 7} = n^{\lg 7} \approx n^{2,8}$
+
+## Exemplo 7 {.smaller}
+
+**Passo 3:** Comparar $f(n)$ e $n^{\log_b(a)}$.
+
+$f(n) = ?(n^{\log_b(a)})$, substituindo
+
+$n^{2} = ?(n^{2,81})$ (O, $\Omega$ ou $\Theta?$)
+
+. . .
+
+<br/>
+
+$n^2 = O(n^{2,81})$
+
+Parece que temos o Caso 1 do TM:
+
+::: {.callout-note icon="false" appearance="minimal"}
+1. Se $f(n) = O(n^{\log_b(a) - \epsilon})$ para $\epsilon > 0$ constante, então $T(n) = \Theta(n^{\log_b(a)})$
+:::
+
+. . .
+
+<br/>
+
+Como $n^2 = O(n^{\lg (7) - \epsilon})$, para $\epsilon = 0.8$, podemos aplicar o caso $1$ do método mestre e concluir que $T(n) = \Theta(n^{\log_b(a)}) = \Theta(n^{\lg 7}) = \Theta(n^{2,8})$.
+
+## Bibliografia
+
+[CRLS] CORMEN, T. H. et al. Algoritmos: Teoria e Prática. Elsevier, 2012. 3a Ed. Capítulo 4 (Divisão e Conquista), Seção 4.5 (Método mestre para resolver recorrências)

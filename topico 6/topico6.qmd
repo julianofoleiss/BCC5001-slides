@@ -1,0 +1,285 @@
+---
+title: Indução Matemática
+author: "Prof. Juliano Foleis"
+format:
+  revealjs:
+    theme: default
+    css: style.css
+    self-contained: true
+    self-contained-math: true
+    #pdf-separate-fragments: true
+    code-line-numbers: true
+---
+
+## Indução Matemática
+
+O princípio da Indução Matemática é usado para provar que dado predicado é verdadeiro pra todos os inteiros positivos maiores ou iguais a certo $a$.
+
+. . .
+
+### Exemplo 
+
+::: {.size30}
+A Indução Matemática pode ser usada para provar que 
+
+$$
+P(n) = \sum_{i=1}^{n} i = \frac{n(n+1)}{2}, \forall n | n \geq 1
+$$
+
+* Neste caso, $P(n) = \sum_{i=1}^{n} i = \frac{n(n+1)}{2}$; e
+* $a = 1$;
+:::
+
+## Indução Matemática
+
+Seja o predicado $P(n)$, onde $n$ é um inteiro positivo. A prova que $P(n)$ é válido a partir de $a$ é realizada em dois passos:
+
+. . .
+
+1. **Caso Base:** Provar que o predicado é verdadeiro para o menor valor possível que satisfaz o predicado, a proposição $P(a)$, onde $a$ é tal valor.
+
+. . .
+
+2. **Passo Indutivo:** Provar que se a proposição $P(k)$ for verdadeira, então $P(k+1)$ também deve ser verdadeira.
+
+
+## Indução Matemática - Caso Base
+
+Prove que o predicado é verdadeiro para $P(a)$. Para isto, basta aplicar a definição do predicado e verificar se a proposição $P(a)$ é verdadeira.
+
+. . .
+
+### Exemplo
+
+::: {.size30}
+Seja $P(n) = \sum_{i=1}^{n} i = \frac{n(n+1)}{2}$ e $a = 1$. O caso base para $n = a = 1$ é verificado:
+
+$$
+\begin{align}
+\sum_{i=1}^{1} i & = \pmb{1} \\
+& = \frac{1(1+1)}{2} = \frac{2}{2} = \pmb{1}
+\end{align}
+$$
+
+Portanto, $P(1) = P(a)$ é verdadeira.
+:::
+
+## Indução Matemática - Passo Indutivo
+
+Provar que se a proposição $P(k)$ for verdadeira, então $P(k+1)$ também deve ser verdadeira. Esta parte é a mais difícil. Portanto, vamos quebrar este passo em vários estágios.
+
+## Passo Indutivo - Estágio 1
+
+Escreva o que o predicado afirma para $P(k)$, onde $k<n$. É importante que esse $k$ seja um $k$ qualquer, ou seja, não seja um número fixo. Isto é o que vamos considerar que é verdade. A proposição $P(k)$ é conhecida como **Hipótese Indutiva**.
+
+. . .
+
+### Exemplo
+
+::: {.size30}
+Seja $P(n) = \sum_{i=1}^{n} i = \frac{n(n+1)}{2}$ e $a = 1$. 
+
+Assumimos que
+
+$$
+\text{p/} k < n, \, \sum_{i=1}^{k} i = \frac{k(k+1)}{2}
+$$
+
+é verdadeiro.
+
+:::
+
+## Passo Indutivo - Estágio 2
+
+Escreva o que o predicado afirma para $P(k+1)$. Isto é o que queremos provar. Mantenha esta proposição em mente durante todo o processo.
+
+. . .
+
+### Exemplo
+
+::: {.size30}
+Seja $P(n) = \sum_{i=1}^{n} i = \frac{n(n+1)}{2}$. 
+
+Queremos provar que
+
+$$
+\text{p/} n = k+1, \, \sum_{i=1}^{k+1} i = \frac{(k+1)((k+1)+1)}{2} = \frac{(k+1)(k+2)}{2} = I
+$$
+
+:::
+
+## Passo Indutivo - Estágio 3
+
+Prove $P(k+1)$ (que escrevemos no estágio 2) considerando que a proposição $P(k)$ é verdade (como fizemos no estágio 1). 
+
+### Exemplo
+
+::: {.size24}
+Seja $P(n) = \sum_{i=1}^{n} i = \frac{n(n+1)}{2}$. 
+
+Supondo que $P(k) = \sum_{i=1}^{k} i = \frac{k(k+1)}{2}$ é verdadeira (estágio 1), 
+
+\begin{align}
+	\sum_{i=1}^{k+1} i & = 1 + 2 + 3 + \dots + k + (k+1) \: \text{(pela notação $\Sigma$)}\\
+	& = \sum_{i=1}^{k} i + (k+1) \: \text{(pela notação $\Sigma$)}\\
+	& = \frac{k(k+1)}{2} + (k + 1) \: \text{(Pela hipótese indutiva)}\\
+	& = \frac{(k+1)(k+2)}{2} = I \text{ (estágio 2)}
+\end{align}
+:::
+
+## Indução Matemática
+
+Uma vez que o caso base e passo indutivo são concluídos, podemos concluir imediatamente que o predicado é verdadeiro para todo $n \geq a$.
+
+## Intuição {.smaller}
+
+* Para que esta conclusão seja um pouco mais "digerível", vamos pensar na indução matemática como uma **máquina automática de provar proposições matemáticas**. Inicialmente provamos o predicado para $n=a$. Pelo passo indutivo, como $P(a)$ é verdadeira, então $P(a+1)$ também é verdadeira. Novamente, pelo passo indutivo, como $P(a+1)$ é verdadeira, então $P(a+2)$ também é verdadeira. E como também $P(a+2)$ é verdadeira, então $P(a+3)$ também é verdadeira, e assim por diante.
+
+* **Como provamos o passo indutivo**, este processo nunca termina. Nós podemos deixar a "máquina" rodando, e ela iria continuar rodando para sempre, conseguindo provar até $n$, independentemente do $n$. Suponha que exista um número $N$ para o qual $P(N)$ é falsa. Neste caso quando chegarmos no número $N-1$ teríamos a seguinte situação: $P(N-1)$ é verdadeira, mas $P(N)$ seria falsa. Esta situação contradiz o passo indutivo, portanto não é possível que aconteça. Desta forma, o predicado $P(n)$ deve ser verdadeiro para todos os inteiros $n \geq a$.
+
+## Exemplo 2
+
+Prove, pelo princípio da Indução Matemática, que 
+
+$$
+\sum_{i=1}^{n} i^2 = \frac{n(n+1)(2n+1)}{6}, \forall n | n \geq 1
+$$
+
+## Exemplo 2 - Caso Base
+
+. . .
+
+No caso precisamos mostrar que $P(1)$ é verdadeira, pois $1$ é o menor valor de $n$ tal que $n \geq 1$.
+
+$$
+\begin{align}
+\sum_{i=1}^{1} i^2 = 1^2 & = \pmb{1} \\
+& = \frac{1(1+1)(2(1)+1)}{6} = \frac{6}{6} = \pmb{1}
+\end{align}
+$$
+
+Portanto, $P(1) = P(a)$ é verdadeira.
+
+## Exemplo 2 - Passo Indutivo
+
+::: {.sizesmaller}
+**Estágio 1:** Assumimos que,
+
+$$
+\text{p/} k < n, \, \sum_{i=1}^{k} i = \frac{k(k+1)}{2}.
+$$
+
+:::
+
+. . .
+
+::: {.sizesmaller}
+
+**Estágio 2:** Queremos provar que,
+
+$$
+\begin{align}
+\text{p/} n=k+1, \\ 
+\sum_{i=1}^{k+1} i^2 & = \frac{(k+1)((k+1)+1)(2(k+1)+1)}{6} \\
+& = \frac{(k+1)(k+2)(2k+3)}{6} = I.
+\end{align}
+$$
+
+:::
+
+## Exemplo 2 - Passo Indutivo (Estágio 3)
+
+Como podemos mostrar que o predicado do estágio 2 é verdadeiro, considerando que a proposição do estágio 1 é verdadeira?
+
+::: {.size28}
+\begin{align}
+	\sum_{i=1}^{k+1} i^2 & = 1^2 + 2^2 + 3^2 + \dots + k^2 + (k+1)^2 \: \text{(Pela notação $\Sigma$)}\\
+	& = \sum_{i=1}^{k} i^2 + (k+1)^2 \: \text{(Pela notação $\Sigma$)}\\
+	& = \frac{k(k+1)(2k+1)}{6} + (k + 1)^2 \: \text{(Pela hipótese indutiva)}\\
+	& = \frac{(k+1)(2k^2 + 7k + 6)}{6}\\
+	& = \frac{(k+1)(k+2)(2k+3)}{6} = I.
+\end{align} 
+:::
+
+## Exemplo 2 - Conclusão
+
+Supondo que $P(k)$ é verdadeira para $k<n$, mostramos que $P(k+1)$ é verdadeira. Como $k$ pode ser um inteiro qualquer, pelo princípio da Indução Matemática, mostramos que $P(n)$ é verdadeira $\forall n | n \geq 1$.
+
+<!-- Exemplo 3 -->
+
+## Exemplo 3
+
+Prove, pelo princípio da Indução Matemática, que 
+
+$$
+\sum_{i=0}^{n} 2^i = 2^{n+1}-1, \forall n | n \geq 0
+$$
+
+## Exemplo 3 - Caso Base
+
+. . .
+
+No caso precisamos mostrar que $P(0)$ é verdadeira, pois $0$ é o menor valor de $n$ tal que $n \geq 0$.
+
+$$
+\begin{align}
+\sum_{i=0}^{0} 2^i = 2^0 & = \pmb{1}\\
+& = 2^{0+1}-1 = 2^1-1 = \pmb{1}
+\end{align}
+$$
+
+Portanto, $P(0) = P(a)$ é verdadeira.
+
+## Exemplo 3 - Passo Indutivo
+
+::: {.sizesmaller}
+**Estágio 1:** Assumimos que,
+
+$$
+\text{p/} k < n, \, \sum_{i=0}^{k} 2^i = 2^{k+1}-1.
+$$
+
+:::
+
+. . .
+
+::: {.sizesmaller}
+
+**Estágio 2:** Queremos provar que,
+
+$$
+\begin{align}
+\text{p/} n=k+1, \\ 
+\sum_{i=0}^{k+1} 2^i  & = 2^{(k+1)+1} - 1 \\ 
+& = 2^{k+2}-1 = I
+\end{align}
+$$
+
+:::
+
+## Exemplo 3 - Passo Indutivo (Estágio 3)
+
+Como podemos mostrar que o predicado do estágio 2 é verdadeiro, considerando que a proposição do estágio 1 é verdadeira?
+
+::: {.size28}
+\begin{align}
+	\sum_{i=0}^{k+1} 2^i & = 2^0 + 2^1 + 2^2 + \dots + 2^k + 2^{(k+1)} \: \text{(Pela notação $\Sigma$)}\\
+	& = \sum_{i=0}^{k} 2^i + 2^{(k+1)} \: \text{(Pela notação $\Sigma$)}\\
+	& = 2^{k+1} - 1 + 2^{k+1} \: \text{(Pela hipótese indutiva)}\\
+	& = 2.2^{k+1} - 1\\
+	& = 2^{k+1+1} - 1\\
+	& = 2^{k+2}-1 = I.
+\end{align} 
+:::
+
+## Exemplo 3 - Conclusão
+
+Supondo que $P(k)$ é verdadeira para $k<n$, mostramos que $P(k+1)$ é verdadeira. Como $k$ pode ser um inteiro qualquer, pelo princípio da Indução Matemática, mostramos que $P(n)$ é verdadeira $\forall n | n \geq 1$.
+
+## Mais Exemplos
+
+Mais exemplos estão disponíveis no resumo no Moodle.
+
+## Bibliografia
+
+BARNES, M; GORDON S. Mathematical Induction. University of Sydney, 1987. [[Link]](https://www.sydney.edu.au/content/dam/students/documents/mathematics-learning-centre/mathematical-induction.pdf)

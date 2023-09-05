@@ -1,0 +1,33 @@
+---
+title: Árvores de Recursão
+author: "Prof. Juliano Foleis"
+format:
+  revealjs:
+    theme: default
+    css: style.css
+    self-contained: true
+    self-contained-math: true
+    pdf-separate-fragments: true
+    code-line-numbers: true
+---
+
+## Método da Substituição
+
+```{dot}
+graph G {
+  layout=neato
+  x**2 -- intr;
+  intr -- runbl;
+  runbl -- run;
+  run -- kernel;
+  kernel -- zombie;
+  kernel -- sleep;
+  kernel -- runmem;
+  sleep -- swap;
+  swap -- runswap;
+  runswap -- new;
+  runswap -- runmem;
+  new -- runmem;
+  sleep -- runmem;
+}
+```

@@ -1,0 +1,307 @@
+---
+title: Método da Substituição para Resolver Recorrências
+author: "Prof. Juliano Foleis"
+format:
+  revealjs:
+    theme: default
+    css: style.css
+    self-contained: true
+    self-contained-math: true
+    pdf-separate-fragments: true
+    code-line-numbers: true
+---
+
+## Método da Substituição
+
+O método da substituição é utilizado para determinar limites superiores e inferiores para recorrências. O método é baseado na indução matemática e é realizado em dois passos:
+
+* Chutar um limite superior ou inferior para uma recorrência.
+* Usar indução matemática para encontrar as constantes, conforme as definições da notação assintótica, para mostrar que o limite vale.
+
+## Exemplo 1
+
+Use o método da substituição para provar que 
+$$
+T(n) = 2T \left(\frac{n}{2}\right) + n = O(n \, lg(n))
+$$ 
+
+Considere $T(1) = 1$.
+
+## Exemplo 1 {.smaller}
+
+**Solução:** Devemos provar que $2T \left(\frac{n}{2}\right) + n \leq cn \, lg(n)$ para $c > 0$ e $n \geq n_0$.
+
+**Caso Base:** Para $n = 2$,
+
+$$
+\begin{align}
+T(2) = 2 T \left(\frac{2}{2}\right) + 2 & \leq c 2 \lg(2)\\
+2(1) + 2 & \leq 2c\\
+4 & \leq 2c\\
+c & \geq \frac{4}{2}
+\end{align}
+$$
+
+Portanto, como $c \geq \frac{4}{2}$ é positivo e constante, o caso base é válido.
+
+## Exemplo 1 {.smaller}
+
+**Hipótese Indutiva:** $T(k) \leq ck \, lg(k), k < n$.
+
+. . .
+
+:::: {.columns}
+
+::: {.column width="60%" .size24}
+
+\begin{align}
+	T(n) & = 2T \left( \frac{n}{2} \right) +n\\
+	& \leq 2c \left(\frac{n}{2} \right) \, lg \left(\frac{n}{2} \right) + n \: \text{(pela H.I.)}\\
+	& \leq cn \, lg \left(\frac{n}{2} \right) + n\\
+	& \leq cn \, lg(n) - cn \, \lg{2} + n\\
+	& \leq cn \, lg(n) \mathbf{- cn + n} \leq cn \, lg(n)
+\end{align}
+
+:::
+
+::: {.column width="40%" .size24}
+
+Desde que
+
+\begin{align}
+	-cn + n & \leq 0\\
+	n & \leq cn\\
+	1 & \leq c\\
+	c & \geq 1
+\end{align}
+
+:::
+
+::::
+
+. . .
+
+Assim, $c = 2$ ($2 \geq 1$) e $n_0 = 2$ são constantes e satisfazem as condições necessárias da definição do limite assintótico superior. Assim, pelo método da substituição, $2T \left(\frac{n}{2} \right) + n = O(n \, lg(n))$.
+
+
+## Exemplo 1
+
+::: {.callout-tip icon="true" }
+
+### Justificativa 
+Note que $T(n) \leq cn \lg(n) -cn +n$ e que $cn \lg(n) -cn +n \leq cn \lg(n)$, logo, por transitividade, $T(n) \leq cn \lg(n)$.
+
+:::
+
+<!-- Exemplo 2 -->
+
+## Exemplo 2
+
+Use o método da substituição para verificar se
+$$
+T(n) = 2T\left(\frac{n}{2}\right) + n = O(n)
+$$ 
+
+Considere $T(1) = 1$.
+
+## Exemplo 2 {.smaller}
+
+**Solução:** Devemos provar que $2T\left(\frac{n}{2}\right) + n \leq cn$ para $c > 0$ e $n \geq n_0$.
+
+**Caso Base:** Para $n = 2$,
+
+$$
+\begin{align}
+T(2) = 2 T \left(\frac{2}{2}\right) + 2 & \leq c 2 \\
+2(1) + 2 & \leq 2c\\
+4 & \leq 2c\\
+c & \geq \frac{4}{2}
+\end{align}
+$$
+
+Portanto, como $c \geq \frac{4}{2}$ é positivo e constante, o caso base é válido.
+
+## Exemplo 2 {.smaller}
+
+**Hipótese Indutiva:** $T(k) \leq ck, k < n$.
+
+. . .
+
+$$
+\begin{align}
+	T(n) & = 2T \left(\frac{n}{2} \right) + n\\
+	& \leq 2c \, \left(\frac{n}{2} \right) + n \: \text{(Pela H.I.)}\\
+	& \leq cn + n\\
+	& \leq (c+1)n \leq cn\\
+	& \leq (c+1) \leq c
+\end{align}
+$$
+
+. . .
+
+Não existe $c$ positivo e constante que satisfaça $(c+1) \leq c$ . Portanto, $2T\left(\frac{n}{2}\right) \neq O(n)$.
+
+<!-- Exemplo 3 -->
+
+## Exemplo 3
+
+Encontre um limite superior para
+$$
+T(n) = 4T\left(\frac{n}{2}\right) + n
+$$ 
+
+Considere $T(1) = 1$.
+
+## Exemplo 3 {.smaller}
+
+**Solução:** Vamos supor que $T(n) = O(n^3)$. Para mostrar isso devemos provar que $T(n) = 4T\left(\frac{n}{2}\right) + n \leq cn^3$ para alguma constante $c > 0$ e $n \geq n_0$.
+
+**Caso Base:** Para $n = 2$,
+
+$$
+\begin{align}
+T(2) = 4 T \left(\frac{2}{2}\right) + 2 & \leq c 2^3 \\
+4(1) + 2 & \leq 8c\\
+6 & \leq 8c\\
+c & \geq \frac{6}{8}
+\end{align}
+$$
+
+Portanto, como $c \geq \frac{6}{8}$ é positivo e constante, o caso base é válido.
+
+## Exemplo 3 {.smaller}
+
+**Hipótese Indutiva:** $T(k) \leq ck^3, k < n$.
+
+. . .
+
+:::: {.columns}
+
+::: {.column width="60%" .size24}
+
+$$
+\begin{align}
+	T(n) & = 4T \left(\frac{n}{2} \right) + n\\
+	& \leq 4c \left(\frac{n}{2} \right)^3 + n \: \text{(Pela H.I.)}\\
+	& \leq 4c \left(\frac{n^3}{8}\right) + n\\
+	& \leq \frac{cn^3}{2} + n\\
+	& \leq cn^3 \mathbf{- \frac{cn^3}{2} + n} \leq cn^3
+\end{align}
+$$
+
+:::
+
+::: {.column width="40%" .size24}
+
+Desde que
+$$
+\begin{align}
+	\frac{-cn^3}{2} + n & \leq 0\\
+	\frac{-cn^3}{2} & \leq -n\\
+	\frac{cn^3}{2} & \geq n\\
+	\frac{cn^2}{2} & \geq 1\\
+	cn^2 & \geq 2\\
+	c & \geq \frac{2}{n^2}
+\end{align}
+$$
+
+:::
+
+::::
+
+. . .
+
+::: {.size26}
+
+Assim, considerando $c = \frac{6}{8}$ e $n_0 = 2$, é possível afirmar que $T(n) = 4T \left(\frac{n}{2} \right) + n = O(n^3).$
+:::
+
+<!-- Exemplo 4 -->
+
+## Exemplo 4
+
+Use o método da substituição para verificar se
+$$
+T(n) = 2T \left(\frac{n}{2}\right) + 1 = O(n)
+$$ 
+
+Considere $T(1) = 1$.
+
+## Exemplo 4 {.smaller}
+
+**Solução:** Devemos provar que $T(n) = 2T \left(\frac{n}{2}\right) + 1 \leq cn$, para $c > 0$ e $n \geq n_0$.
+
+**Caso Base:** Para $n = 2$,
+
+$$
+\begin{align}
+T(2) = 2 T \left(\frac{2}{2}\right) + 1 & \leq 2 c  \\
+2(1) + 1 & \leq 1c\\
+3 & \leq c\\
+c & \geq 3
+\end{align}
+$$
+
+Portanto, como $c \geq 3$ é positivo e constante, o caso base é válido.
+
+## Exemplo 4 {.smaller}
+
+**Hipótese Indutiva:** $T(k) \leq ck, k < n$.
+
+. . .
+
+$$
+\begin{align}
+	T(n) & = 2T\left(\frac{n}{2}\right) + 1\\
+	& \leq 2c \left( \frac{n}{2} \right) + 1 \: \text{(Pela H.I.)}\\
+	& \leq cn + 1 \leq cn
+\end{align}
+$$
+
+<br/>
+
+Não dá pra concluir que $cn + 1 \leq cn$. Entretanto, note que o termo "excedente" ($\mathbf{1}$), que impede mostrar que $cn + 1 \leq cn$, é de ordem mais baixa que o limite que queremos mostrar ($n$). Neste caso podemos usar uma hipótese indutiva mais forte, ou seja, subtrair um termo de ordem inferior da hipótese indutiva anteriormente adotada. Desta forma devemos provar que $T(n) \leq cn - b$, sendo $b$ uma constante estritamente positiva.
+
+## Exemplo 4 {.smaller}
+
+**Hipótese Indutiva:** $T(k) \leq ck - b, k < n \land b > 0$.
+
+. . .
+
+:::: {.columns}
+
+::: {.column width="60%" .size24}
+
+$$
+\begin{align}
+	T(n) & = 2T\left(\frac{n}{2}\right) + 1\\
+	& \leq 2\left(c \, \frac{n}{2} - b\right) + 1 \: \text{(Pela H.I.)}\\
+	& \leq cn - 2b + 1\\
+	& \leq cn -b \mathbf{-b + 1} \leq cn - b
+\end{align}
+$$
+
+:::
+
+::: {.column width="40%" .size24}
+
+Desde que
+$$
+\begin{align}
+	-b + 1 & \leq 0\\
+	1 & \leq b\\
+	b & \geq 1
+\end{align}
+$$
+
+:::
+
+::::
+
+. . .
+
+Assim, como $b$ é positivo e constante, $T(n) \leq cn - b$. Como $cn - b \leq cn$, então, por transitividade, $T(n) \leq cn$. Logo, $T(n) = O(n).$
+
+## Bibliografia
+
+[CRLS] CORMEN, T. H. et al. Algoritmos: Teoria e Prática. Elsevier, 2012. 3a Ed. Capítulo 4 (Divisão e Conquista), Seção 4.3 (Método de substituição para resolver recorrências)

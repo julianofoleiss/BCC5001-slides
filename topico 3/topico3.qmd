@@ -1,0 +1,370 @@
+---
+title: Análise Assintótica
+author: "Prof. Juliano Foleis"
+format:
+  revealjs:
+    theme: default
+    css: style.css
+    self-contained: true
+    self-contained-math: true
+    pdf-separate-fragments: true
+---
+
+## Notação Assintótica
+
+* Conseguimos mostrar que `Soma_TS` tem custo $T(n) =  \alpha n^2 + \beta n + \gamma$. 
+
+* O nosso interesse real não é saber exatamente a função de custo, mas sim o **comportamento assintótico** dela.
+
+* O comportamento assintótico refere-se a quanto o custo do algoritmo aumenta conforme $n$ cresce.
+
+* Por exemplo, quando falamos do custo de `Soma_TS`, apenas nos referimos a ele por "custo quadrático", uma vez que é o termo $\alpha n^2$ que define o comportamento da função!
+
+## Notação Assintótica
+
+* A notação assintótica é um formalismo matemático que nos permite comparar funções para $n$ grande.
+
+* Podemos usar a notação assintótica para comparar custos de algoritmos diferentes para um mesmo problema, com o objetivo de escolher o algoritmo mais eficiente.
+
+* Se um algoritmo **A** tem custo $\Theta(n)$ e o algoritmo **B** tem custo $\Theta(n^2)$, dizemos que o algoritmo **A** tem custo assintoticamente inferior que  o algoritmo **B**. Note que podemos concluir isso mesmo sem conhecer exatamente as funções de custo de **A** ou **B**!
+
+## Notação $O$
+
+![](bigo.png){fig-align="center"}
+
+## Notação $O$
+
+::: {.callout-note icon=false .size20}
+
+### Definição
+
+$O(g(n)) = \{ f(n): \text{existem constantes positivas } n_0 \text{ e } c 
+\\ 
+\text{ tal que } f(n) \leq cg(n), \forall n \, | \, n \geq n_0 \}$
+
+:::
+
+:::: {.columns}
+
+::: {.column width=40%}
+![](bigo.png){width=90%}
+:::
+
+::: {.column width=60%}
+::: {.sizesmaller}
+* $g(n)$ é um limite superior para $f(n)$
+* A partir de um determinado $n_0$, $f(n)$ será sempre menor ou igual a $cg(n)$.
+* Note que $O(g(n))$ é o conjunto de todas as funções limitadas superiormente por $g(n)$, ou seja, $f(n) \in O(g(n))$.
+:::
+:::
+
+::::
+
+## Notação O -- Exemplos
+$$
+2n + 1 = O(n^2)
+$$
+
+. . .
+
+$$
+n^2 + 2n = O(n^2)
+$$
+
+. . .
+
+$$
+3n + 2 = O(n^3)
+$$
+
+. . .
+
+$$
+3\lg(n) = O(n)
+$$
+
+. . .
+
+$$
+4n \lg(n) = O(n^2)
+$$
+
+. . .
+
+$$
+n^3 + 20n + 1 \neq O(n^2)
+$$
+
+## Notação $\Omega$ (ômega)
+
+![](bigomega.png){fig-align="center"}
+
+## Notação $\Omega$ (ômega)
+
+::: {.callout-note icon=false .size20}
+
+### Definição
+
+$\Omega(g(n)) = \{ f(n): \text{existem constantes positivas } n_0 \text{ e } c 
+\\ 
+\text{ tal que } cg(n) \leq f(n), \forall n \, | \, n \geq n_0 \}$
+
+:::
+
+:::: {.columns}
+
+::: {.column width=40%}
+![](bigomega.png){width=90%}
+:::
+
+::: {.column width=60%}
+::: {.sizesmaller}
+* $g(n)$ é um limite inferior para $f(n)$
+* A partir de um determinado $n_0$, $cg(n)$ será sempre menor ou igual a $f(n)$.
+* Note que $\Omega(g(n))$ é o conjunto de todas as funções limitadas inferiormente por $g(n)$, ou seja, $f(n) \in \Omega(g(n))$.
+:::
+:::
+
+::::
+
+## Notação $\Omega$ -- Exemplos
+$$
+n^3+ 20n = \Omega(n^2)
+$$
+
+. . .
+
+$$
+3n + 4 = \Omega(n)
+$$
+
+. . .
+
+$$
+n^3 + 2n = \Omega(n)
+$$
+
+. . .
+
+$$
+10n = \Omega(\lg(n))
+$$
+
+. . .
+
+$$3n^2 \neq \Omega(n)$$
+
+## Notação $\Theta$ (teta)
+
+![](theta.png){fig-align="center"}
+
+## Notação $\Theta$ (teta)
+
+::: {.callout-note icon=false .size20}
+
+### Definição
+
+$\Theta(g(n)) = \{ f(n): \text{existem constantes positivas } n_0, c_1 \text{ e } c_2
+\\ 
+\text{ tal que } c_1g(n) \leq f(n) \leq c_2f(n), \forall n \, | \, n \geq n_0 \}$
+
+:::
+
+:::: {.columns}
+
+::: {.column width=40%}
+![](theta.png){width=90%}
+:::
+
+::: {.column width=60%}
+::: {.sizesmaller}
+* $g(n)$ é um limite assintoticamente restrito para $f(n)$
+* $f(n)$ tem o mesmo comportamento assintótico que $g(n)$
+* Note que $\Theta(g(n))$ é o conjunto de todas as funções que são assitoticamente restritas a $g(n)$, ou seja, $f(n) \in \Theta(g(n))$.
+:::
+:::
+
+::::
+
+## Notação $\Theta$ -- Exemplos
+$$
+n^3+ 20n = \Theta(n^3)
+$$
+
+. . .
+
+$$
+3n + 4 = \Theta(n)
+$$
+
+. . .
+
+$$
+n^2 + 3 = \Theta(n^2)
+$$
+
+. . .
+
+$$
+3\lg(n) = \Theta(\lg(n))
+$$
+
+. . .
+
+$$
+3n^2 \neq \Theta(n^3)
+$$
+
+. . .
+
+$$
+3n^2 \neq \Theta(n)
+$$
+
+## Teoremas Importantes
+
+::: {.callout-note icon=false .size20}
+
+### Teorema 1
+
+$\text{Para duas funções quaisquer } f(n) \text{ e } g(n) \text{,}
+\\
+f(n) = \Theta(g(n)) \text{ se e somente se } f(n) = O(g(n)) \text{ E } f(n) = \Omega(g(n)).$
+
+:::
+
+## Teoremas Importantes
+
+::: {.callout-note icon=false .size20}
+
+### Teorema 2
+
+$$\text{Para qualquer polinômio } p(n) = \sum_{i}^{d} a_in^i
+\text{ onde } a_i \text{ são constantes E } a_d > 0 \text{, } 
+\\
+p(n) = \Theta(n^d).$$
+
+:::
+
+. . . 
+
+Em outras palavras, um polinômio $p(n)$ de grau $d$ é $\Theta(n^d)$.
+
+## Exemplos (Teorema 2)
+$$
+2n^2 + 3n + 1 = \Theta(n^2)
+$$
+
+. . .
+
+$$
+5n^3 + 3n^2 + n = \Theta(n^3)
+$$
+
+. . .
+
+$$
+10 = \Theta(1)
+$$
+
+## Teoremas Importantes
+
+::: {.callout-note icon=false .size20}
+
+### Teorema 3
+
+$$\text{Para duas funções quaisquer } f(n) \text{ e } g(n) \text{, } \Theta(f(n) + g(n)) = \Theta(\max(f(n), g(n))) $$
+
+:::
+
+. . .
+
+**Intuição:** a função de maior custo assintótico domina o custo da função-soma.
+
+## Exemplos (Teorema 3)
+$$
+f(n) = n \land g(n) = n^2 \Rightarrow \Theta(f(n) + g(n)) = \Theta(n^2).
+$$
+
+. . .
+
+$$
+f(n) = \lg(n) \land g(n) = n \Rightarrow \Theta(f(n) + g(n)) = \Theta(n).
+$$
+
+. . .
+
+$$
+f(n) = n\lg(n) \land g(n) = n \Rightarrow \Theta(f(n) + g(n)) = \Theta(n \lg(n)).
+$$
+
+## Teste do Limite
+
+::: {.sizesmaller}
+Sejam duas funções $f(n)$ e $g(n)$ positivas e monótonas crescentes. Para conhecer a relação assintótica entre $f(n)$ e $g(n)$, podemos usar o teste do limite.
+:::
+
+::: {.callout-note icon=false .size20}
+
+### 
+
+$$\text{Seja } L = \lim_{n \rightarrow \infty} \frac{f(n)}{g(n)}$$
+
+1. Se $L = 0$, então $f(n) = O(g(n))$.
+2. Se $L = \infty$, então $f(n) = \Omega(g(n))$.
+3. Se $L = C$, tal que $C$ é uma constante diferente de zero, então $f(n) = \Theta(g(n))$.
+
+:::
+
+## Outras Propriedades
+
+### Transitividade 
+
+::: {.sizesmaller}
+Se $f(n) = \Theta(g(n))$ e $g(n) = \Theta(h(n))$ então $f(n) = \Theta(h(n))$
+
+Se $f(n) = O(g(n))$ e $g(n) = O(h(n))$ então $f(n) = O(h(n))$
+
+Se $f(n) = \Omega(g(n))$ e $g(n) = \Omega(h(n))$ então $f(n) = \Omega(h(n))$
+::: 
+
+## Outras Propriedades
+
+### Propriedade Reflexiva
+
+::: {.sizesmaller}
+$f(n) = \Theta(f(n))$
+
+$f(n) = O(f(n))$
+
+$f(n) = \Omega(f(n))$
+:::
+
+## Outras Propriedades
+
+### Simetria
+
+::: {.sizesmaller}
+$f(n) = \Theta(g(n)) \Leftrightarrow g(n) = \Theta(f(n))$
+::: 
+
+### Simetria Transposta
+
+::: {.sizesmaller}
+$f(n) = O(g(n)) \Leftrightarrow g(n) = \Omega(f(n))$
+::: 
+
+### Intuição para Comparação
+
+::: {.sizesmaller}
+$f(n) = O(g(n))$ é análogo a $a \leq b$
+
+$f(n) = \Omega(g(n))$ é análogo a $a \geq b$
+
+$f(n) = \Theta(g(n))$ é análogo a $a = b$
+::: 
+
+
+## Bibliografia
+
+[CRLS] CORMEN, T. H. et al. Algoritmos: Teoria e Prática. Elsevier, 2012. 3a Ed. Capítulo 3 (Crescimento de Funções), Seção 3.1
