@@ -7,7 +7,7 @@ format:
     css: style.css
     self-contained: true
     self-contained-math: true
-    #pdf-separate-fragments: true
+    pdf-separate-fragments: true
     code-line-numbers: true
 ---
 
@@ -166,7 +166,7 @@ Portanto, $P(1) = P(a)$ é verdadeira.
 **Estágio 1:** Assumimos que,
 
 $$
-\text{p/} k < n, \, \sum_{i=1}^{k} i = \frac{k(k+1)}{2}.
+\text{p/} k < n, \, \sum_{i=1}^{k} i^2 = \frac{k(k+1)(2k+1)}{6}.
 $$
 
 :::

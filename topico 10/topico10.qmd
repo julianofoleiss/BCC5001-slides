@@ -7,7 +7,7 @@ format:
     css: style.css
     self-contained: true
     self-contained-math: true
-    pdf-separate-fragments: true
+    pdf-separate-fragments: false
     code-line-numbers: true
 ---
 
@@ -208,7 +208,7 @@ Antes do início de cada iteração do laço `while`, `soma = v[0] + v[1] + ... 
 :::
 ::::
 
-**Término:** Depois da última iteração do laço `while`, `i=n`. Como provamos que a invariante é mantida entre todas as iterações, sabemos que: soma = v[0] + v[1] +...+ v[i-1]. Substituindo `i` por `n+1`, que é o valor atual de `i`,
+**Término:** Depois da última iteração do laço `while`, `i=n`. Como provamos que a invariante é mantida entre todas as iterações, sabemos que: soma = v[0] + v[1] +...+ v[i-1]. Substituindo `i` por `n`, que é o valor atual de `i`,
 
 $$
 \begin{align}

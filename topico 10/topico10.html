@@ -1452,7 +1452,7 @@ display: none;
 <p>Antes do início de cada iteração do laço <code>while</code>, <code>soma = v[0] + v[1] + ... + V[i-1]</code>.</p>
 </div>
 </div>
-<p><strong>Término:</strong> Depois da última iteração do laço <code>while</code>, <code>i=n</code>. Como provamos que a invariante é mantida entre todas as iterações, sabemos que: soma = v[0] + v[1] +…+ v[i-1]. Substituindo <code>i</code> por <code>n+1</code>, que é o valor atual de <code>i</code>,</p>
+<p><strong>Término:</strong> Depois da última iteração do laço <code>while</code>, <code>i=n</code>. Como provamos que a invariante é mantida entre todas as iterações, sabemos que: soma = v[0] + v[1] +…+ v[i-1]. Substituindo <code>i</code> por <code>n</code>, que é o valor atual de <code>i</code>,</p>
 <p><span class="math display">\[
 \begin{align}
   \text{soma} &amp; = v[0] + v[1] + ... + v[n-1]
@@ -2374,7 +2374,7 @@ window.QuartoSupport = function () {
 'controlsAuto': true,
 'previewLinksAuto': false,
 'smaller': false,
-'pdfSeparateFragments': true,
+'pdfSeparateFragments': false,
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
 'autoAnimateUnmatched': true,
